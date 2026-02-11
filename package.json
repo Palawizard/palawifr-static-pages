@@ -1,0 +1,23 @@
+{
+  "name": "palawi-pages-unified",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "workspaces": [
+    "apps/page-daccueil",
+    "apps/yboost-portfollio",
+    "apps/music",
+    "apps/youtube"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "start": "node server.js",
+    "postinstall": "npm run build"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

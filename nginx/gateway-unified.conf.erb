@@ -1,0 +1,174 @@
+# =========================
+# Global settings (important on Scalingo)
+# =========================
+
+# Prevent redirects from leaking the internal container port (e.g. :27811)
+port_in_redirect off;
+
+# If you ever generate absolute redirects, avoid internal ports
+absolute_redirect off;
+
+# -------------------------
+# Compat: old routes -> /power4/...
+# -------------------------
+location ~ ^/(match|board|u|clock|friends)(/|$) {
+  return 308 https://$host/power4$request_uri;
+}
+
+# -------------------------
+# Trailing slash canonical URLs (NO internal port)
+# -------------------------
+location = /portfolio { return 308 https://$host/portfolio/; }
+location = /musiclinks { return 308 https://$host/musiclinks/; }
+location = /streamlinks { return 308 https://$host/streamlinks/; }
+location = /power4 { return 308 https://$host/power4/; }
+location = /schedule-maker { return 308 https://$host/schedule-maker/; }
+location = /groupie-tracker { return 308 https://$host/groupie-tracker/; }
+
+# =========================
+# NEXT.JS assets ROOT: /_next
+# =========================
+location ^~ /_next/ {
+  proxy_http_version 1.1;
+
+  proxy_ssl_server_name on;
+  proxy_ssl_name $proxy_host;
+
+  proxy_set_header Host $proxy_host;
+  proxy_set_header X-Forwarded-Host $host;
+  proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+  proxy_pass <%= ENV["SCHEDULE_MAKER_BACKEND"] %>;
+  proxy_redirect default;
+}
+
+# -------------------------
+# Power4 (Go) under /power4/
+# -------------------------
+location ^~ /power4/ {
+  proxy_http_version 1.1;
+
+  proxy_ssl_server_name on;
+  proxy_ssl_name $proxy_host;
+
+  proxy_set_header Host $proxy_host;
+  proxy_set_header X-Forwarded-Host $host;
+  proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+  proxy_set_header Upgrade $http_upgrade;
+  proxy_set_header Connection "upgrade";
+
+  proxy_pass <%= ENV["POWER4_BACKEND"] %>;
+  proxy_redirect default;
+}
+
+# -------------------------
+# Schedule Maker (Next) under /schedule-maker/
+# -------------------------
+location ^~ /schedule-maker/ {
+  proxy_http_version 1.1;
+
+  proxy_ssl_server_name on;
+  proxy_ssl_name $proxy_host;
+
+  proxy_set_header Host $proxy_host;
+  proxy_set_header X-Forwarded-Host $host;
+  proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+  proxy_set_header X-Forwarded-Prefix /schedule-maker;
+
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+  proxy_pass <%= ENV["SCHEDULE_MAKER_BACKEND"] %>;
+  proxy_redirect default;
+}
+
+# -------------------------
+# Groupie Tracker (Go) under /groupie-tracker/
+# -------------------------
+location ^~ /groupie-tracker/ {
+  proxy_http_version 1.1;
+
+  proxy_ssl_server_name on;
+  proxy_ssl_name $proxy_host;
+
+  proxy_set_header Host $proxy_host;
+  proxy_set_header X-Forwarded-Host $host;
+  proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+  proxy_set_header X-Forwarded-Prefix /groupie-tracker;
+
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+  proxy_pass <%= ENV["GROUPIE_TRACKER_BACKEND"] %>/;
+  proxy_redirect default;
+}
+
+# -------------------------
+# Unified static pages app
+# Routes kept as-is (no prefix stripping)
+# -------------------------
+location ^~ /portfolio/ {
+  proxy_http_version 1.1;
+
+  proxy_ssl_server_name on;
+  proxy_ssl_name $proxy_host;
+
+  proxy_set_header Host $proxy_host;
+  proxy_set_header X-Forwarded-Host $host;
+  proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+
+  proxy_pass <%= ENV["PAGES_BACKEND"] %>;
+  proxy_redirect default;
+}
+
+location ^~ /musiclinks/ {
+  proxy_http_version 1.1;
+
+  proxy_ssl_server_name on;
+  proxy_ssl_name $proxy_host;
+
+  proxy_set_header Host $proxy_host;
+  proxy_set_header X-Forwarded-Host $host;
+  proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+
+  proxy_pass <%= ENV["PAGES_BACKEND"] %>;
+  proxy_redirect default;
+}
+
+location ^~ /streamlinks/ {
+  proxy_http_version 1.1;
+
+  proxy_ssl_server_name on;
+  proxy_ssl_name $proxy_host;
+
+  proxy_set_header Host $proxy_host;
+  proxy_set_header X-Forwarded-Host $host;
+  proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+
+  proxy_pass <%= ENV["PAGES_BACKEND"] %>;
+  proxy_redirect default;
+}
+
+# -------------------------
+# Home ( / ) now served by the same unified pages app
+# -------------------------
+location / {
+  proxy_http_version 1.1;
+
+  proxy_ssl_server_name on;
+  proxy_ssl_name $proxy_host;
+
+  proxy_set_header Host $proxy_host;
+  proxy_set_header X-Forwarded-Host $host;
+  proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+
+  proxy_pass <%= ENV["PAGES_BACKEND"] %>;
+  proxy_redirect default;
+}
