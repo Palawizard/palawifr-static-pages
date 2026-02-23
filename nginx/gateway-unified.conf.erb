@@ -18,12 +18,12 @@ location ~ ^/(match|board|u|clock|friends)(/|$) {
 # -------------------------
 # Trailing slash canonical URLs (NO internal port)
 # -------------------------
-location = /portfolio { return 308 https://$host/portfolio/; }
-location = /musiclinks { return 308 https://$host/musiclinks/; }
-location = /streamlinks { return 308 https://$host/streamlinks/; }
-location = /power4 { return 308 https://$host/power4/; }
-location = /schedule-maker { return 308 https://$host/schedule-maker/; }
-location = /groupie-tracker { return 308 https://$host/groupie-tracker/; }
+location = /portfolio { return 308 https://$host/portfolio/$is_args$args; }
+location = /musiclinks { return 308 https://$host/musiclinks/$is_args$args; }
+location = /streamlinks { return 308 https://$host/streamlinks/$is_args$args; }
+location = /power4 { return 308 https://$host/power4/$is_args$args; }
+location = /schedule-maker { return 308 https://$host/schedule-maker/$is_args$args; }
+location = /groupie-tracker { return 308 https://$host/groupie-tracker/$is_args$args; }
 
 # =========================
 # NEXT.JS assets ROOT: /_next
