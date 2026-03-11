@@ -18,6 +18,9 @@ import linkedinIcon from '../assets/LinkedIn.webp'
 import modrinthIcon from '../assets/modrinth.webp'
 import curseforgeIcon from '../assets/curseforge.webp'
 
+import streamScheduleMakerImage from '../assets/schedule.gif'
+import groupieTrackerImage from '../assets/groupie.gif'
+
 const router = useRouter()
 const { mode, brandTitle, maskedName, relock } = useAuthMode()
 
@@ -206,6 +209,81 @@ const showLiteBanner = computed(() => mode.value === 'lite')
           <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <article class="card hover-lift">
               <div class="relative">
+                <img :src="streamScheduleMakerImage" alt="Pala’s Stream Schedule Maker" class="project-media">
+                <div class="overlay-fade"></div>
+                <div class="absolute inset-0 p-4 flex flex-col justify-end text-white">
+                  <h3 class="text-lg font-semibold">Pala’s Stream Schedule Maker · 2026</h3>
+                  <p class="text-sm text-white/80 mb-3">Web tool for generating and organizing stream schedules.</p>
+                  <div class="flex flex-wrap gap-2 mb-3">
+                    <span class="chip-light">HTML</span>
+                    <span class="chip-light">Tailwind CSS</span>
+                    <span class="chip-light">Next.js</span>
+                  </div>
+                  <div class="flex gap-2">
+                    <a class="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 font-medium bg-brand text-white hover:brightness-110 shadow text-sm" href="https://palawi.fr/schedule-maker/" target="_blank" rel="noopener noreferrer">
+                      <img :src="linkIcon" alt="" class="h-4 w-4 object-contain">
+                      <span>Live</span>
+                    </a>
+                    <a class="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 font-medium border border-white/25 text-white hover:bg-white/10 text-sm" href="https://github.com/Palawizard/schedule-maker" target="_blank" rel="noopener noreferrer">
+                      <img :src="githubIcon" alt="" class="h-4 w-4 object-contain">
+                      <span>Code</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="card hover-lift">
+              <div class="relative">
+                <img :src="helpmyhomework" alt="Help My Homework" class="project-media">
+                <div class="overlay-fade"></div>
+                <div class="absolute inset-0 p-4 flex flex-col justify-end text-white">
+                  <h3 class="text-lg font-semibold">Help My Homework · 2025 - 2026</h3>
+                  <p class="text-sm text-white/80 mb-3">Free and supportive homework help platform for all students.</p>
+                  <div class="flex flex-wrap gap-2 mb-3">
+                    <span class="chip-light">HTML</span>
+                    <span class="chip-light">Tailwind CSS</span>
+                    <span class="chip-light">SvelteKit</span>
+                  </div>
+                  <div class="flex gap-2">
+                    <a class="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 font-medium bg-brand text-white hover:brightness-110 shadow text-sm" href="https://ydays.ynov.com/projects/6138" target="_blank" rel="noopener noreferrer">
+                      <img :src="linkIcon" alt="" class="h-4 w-4 object-contain">
+                      <span>More Info</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="card hover-lift">
+              <div class="relative">
+                <img :src="groupieTrackerImage" alt="Pala’s Groupie Tracker" class="project-media">
+                <div class="overlay-fade"></div>
+                <div class="absolute inset-0 p-4 flex flex-col justify-end text-white">
+                  <h3 class="text-lg font-semibold">Pala’s Groupie Tracker · 2025-2026</h3>
+                  <p class="text-sm text-white/80 mb-3">Web application displaying information about artists and their events.</p>
+                  <div class="flex flex-wrap gap-2 mb-3">
+                    <span class="chip-light">HTML</span>
+                    <span class="chip-light">Tailwind CSS</span>
+                    <span class="chip-light">JS</span>
+                    <span class="chip-light">Go</span>
+                  </div>
+                  <div class="flex gap-2">
+                    <a class="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 font-medium bg-brand text-white hover:brightness-110 shadow text-sm" href="https://palawi.fr/groupie-tracker/" target="_blank" rel="noopener noreferrer">
+                      <img :src="linkIcon" alt="" class="h-4 w-4 object-contain">
+                      <span>Live</span>
+                    </a>
+                    <a class="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 font-medium border border-white/25 text-white hover:bg-white/10 text-sm" href="https://github.com/Palawizard/Pala-s-Groupie-Tracker" target="_blank" rel="noopener noreferrer">
+                      <img :src="githubIcon" alt="" class="h-4 w-4 object-contain">
+                      <span>Code</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="card hover-lift">
+              <div class="relative">
                 <img :src="power4" alt="Power 4" class="project-media">
                 <div class="overlay-fade"></div>
                 <div class="absolute inset-0 p-4 flex flex-col justify-end text-white">
@@ -224,29 +302,6 @@ const showLiteBanner = computed(() => mode.value === 'lite')
                     <a class="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 font-medium border border-white/25 text-white hover:bg-white/10 text-sm" href="https://github.com/Palawizard/power4" target="_blank" rel="noopener noreferrer">
                       <img :src="githubIcon" alt="" class="h-4 w-4 object-contain">
                       <span>Code</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="card hover-lift">
-              <div class="relative">
-                <img :src="helpmyhomework" alt="Help My Homework" class="project-media">
-                <div class="overlay-fade"></div>
-                <div class="absolute inset-0 p-4 flex flex-col justify-end text-white">
-                  <h3 class="text-lg font-semibold">Help My Homework · 2025</h3>
-                  <p class="text-sm text-white/80 mb-3">Free and supportive homework help platform for all students.</p>
-                  <div class="flex flex-wrap gap-2 mb-3">
-                    <span class="chip-light">HTML</span>
-                    <span class="chip-light">CSS</span>
-                    <span class="chip-light">JS</span>
-                    <span class="chip-light">Go</span>
-                  </div>
-                  <div class="flex gap-2">
-                    <a class="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 font-medium bg-brand text-white hover:brightness-110 shadow text-sm" href="https://ydays.ynov.com/projects/6138" target="_blank" rel="noopener noreferrer">
-                      <img :src="linkIcon" alt="" class="h-4 w-4 object-contain">
-                      <span>More Info</span>
                     </a>
                   </div>
                 </div>
@@ -385,7 +440,7 @@ const showLiteBanner = computed(() => mode.value === 'lite')
               <img :src="githubIcon" alt="" class="h-5 w-5 object-contain">
               <span>GitHub</span>
             </a>
-            <a v-if="mode==='full'" class="inline-flex items-center gap-2 rounded-lg px-4 py-2 font-medium bg-brand text-white hover:brightness-110 shadow" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+            <a v-if="mode==='full'" class="inline-flex items-center gap-2 rounded-lg px-4 py-2 font-medium bg-brand text-white hover:brightness-110 shadow" href="https://www.linkedin.com/in/baptiste-de-menorval/" target="_blank" rel="noopener noreferrer">
               <img :src="linkedinIcon" alt="" class="h-5 w-5 object-contain rounded">
               <span>LinkedIn</span>
             </a>
@@ -531,7 +586,7 @@ const showLiteBanner = computed(() => mode.value === 'lite')
           <a class="text-white/80 hover:text-white transition inline-flex items-center gap-2" href="https://github.com/Palawizard" target="_blank" rel="noopener noreferrer">
             <img :src="githubIcon" alt="" class="h-5 w-5 object-contain"><span>GitHub</span>
           </a>
-          <a v-if="mode==='full'" class="text-white/80 hover:text-white transition inline-flex items-center gap-2" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+          <a v-if="mode==='full'" class="text-white/80 hover:text-white transition inline-flex items-center gap-2" href="https://www.linkedin.com/in/baptiste-de-menorval/" target="_blank" rel="noopener noreferrer">
             <img :src="linkedinIcon" alt="" class="h-5 w-5 object-contain rounded"><span>LinkedIn</span>
           </a>
         </div>

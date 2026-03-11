@@ -12,6 +12,9 @@ import utransfer from '../assets/project placeholder.png'
 import qrcode from '../assets/project placeholder.png'
 import emailIcon from '../assets/email.svg'
 
+import streamScheduleMakerImage from '../assets/schedule.gif'
+import groupieTrackerImage from '../assets/groupie.gif'
+
 const router = useRouter()
 const { mode, password, showRequest, currentUrl, errorMsg, isSubmitting, realName, setCurrentUrl, unlock, continueLite, onRequestSubmit } = useAuthMode()
 
@@ -35,8 +38,10 @@ const continuePublic = () => {
 }
 
 const projects = computed(() => [
-  { key: 'power4', title: 'Power 4', year: '2025', media: power4 },
+  { key: 'streamschedulemaker', title: 'Pala’s Stream Schedule Maker', year: '2026', media: streamScheduleMakerImage },
   { key: 'helpmyhomework', title: 'Help My Homework', year: '2025', media: helpmyhomework },
+  { key: 'groupietracker', title: 'Pala’s Groupie Tracker', year: '2025-2026', media: groupieTrackerImage },
+  { key: 'power4', title: 'Power 4', year: '2025', media: power4 },
   { key: 'polaris', title: 'POLARIS', year: '2025', media: polaris },
   { key: 'dimensional', title: 'Dimensional Roulette', year: '2025', media: dimensional },
   { key: 'utransfer', title: 'UTransfer', year: '2024', media: utransfer },
